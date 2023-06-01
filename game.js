@@ -13,11 +13,13 @@ class Gameplay extends Phaser.Scene {
 		this.SLUG_VELOCITY = 100;
 		this.restarting = false;
 
-		this.rlyply = this.physics.add.sprite(100, 600, "rolypoly").setScale(0.7).setMaxVelocity(200, 300).setVelocityX(-this.MAX_VELOCITY);
+		this.rlyply = this.physics.add.sprite(100, 600, "rolypoly")
+			.setScale(0.7)
+			.setMaxVelocity(200, 300)
+			.setVelocityX(-this.MAX_VELOCITY)
+			.setSize(310, 200);
+
 		this.rlyply.flipX = true;
-		this.rlyply;
-		this.rlyply;
-		this.rlyply.setSize(310, 200);
 
 		this.slug = this.physics.add.sprite(1400, 880, "slug");
 		this.slug.setScale(0.7);
