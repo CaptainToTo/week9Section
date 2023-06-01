@@ -27,6 +27,13 @@ class Gameplay extends Phaser.Scene {
 			.setVelocityX(-this.SLUG_VELOCITY)
 			.setImmovable(true);
 
+			this.slug2 = this.physics.add.sprite(600, 880, "slug")
+				.setScale(0.7)
+				.setMaxVelocity(this.SLUG_VELOCITY, 0)
+				.setSize(200, 100)
+				.setVelocityX(-this.SLUG_VELOCITY)
+				.setImmovable(true);
+
 		this.text = this.add.text(700, 200, "click or tap to jump")
 			.setFontSize("40pt")
 			.setOrigin(0.5, 0.5);
@@ -39,8 +46,10 @@ class Gameplay extends Phaser.Scene {
 
 		//collision
 		this.physics.add.overlap(this.rlyply, this.slug, this.handleCollision, null, this);
+		this.physics.add.overlap(this.rlyply, this.slug2, this.handleCollision, null, this);
 		this.physics.add.collider(this.rlyply, this.ground);
 		this.physics.add.collider(this.slug, this.ground);
+		this.physics.add.collider(this.slug2, this.ground);
 
 		this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		// add a pointer down event listener
@@ -60,7 +69,7 @@ class Gameplay extends Phaser.Scene {
 		}
 
 		if (this.rlyply.x > 1400) {
-			this.displayTextAndReset("You Win");
+			this.displayTextAndReset("You Win", false);
 		}
 		if (this.rlyply.x < -30) {
 			this.displayTextAndReset("You Lose");
@@ -113,6 +122,13 @@ class Gameplay2 extends Phaser.Scene {
 			.setVelocityX(-this.SLUG_VELOCITY)
 			.setImmovable(true);
 
+		this.slug2 = this.physics.add.sprite(600, 880, "slug")
+			.setScale(0.7)
+			.setMaxVelocity(this.SLUG_VELOCITY, 0)
+			.setSize(200, 100)
+			.setVelocityX(-this.SLUG_VELOCITY)
+			.setImmovable(true);	
+
 		this.text = this.add.text(700, 200, "click or tap to jump")
 			.setFontSize("40pt")
 			.setOrigin(0.5, 0.5);
@@ -125,8 +141,10 @@ class Gameplay2 extends Phaser.Scene {
 
 		//collision
 		this.physics.add.overlap(this.rlyply, this.slug, this.handleCollision, null, this);
+		this.physics.add.overlap(this.rlyply, this.slug2, this.handleCollision, null, this);
 		this.physics.add.collider(this.rlyply, this.ground);
 		this.physics.add.collider(this.slug, this.ground);
+		this.physics.add.collider(this.slug2, this.ground);
 
 		this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		// add a pointer down event listener
@@ -187,6 +205,6 @@ const game = new Phaser.Game({
 			}
 		}
 	},
-	scene: [Gameplay],
+	scene: [Gameplay, Gameplay2],
 	title: "Roly Poly: To the End",
 });
